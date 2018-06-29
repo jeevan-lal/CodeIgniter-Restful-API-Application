@@ -2,6 +2,7 @@
 
 CodeIgniter Restful API Controller - Easily build REST API with Token Authorization
 
+[Watch Videos](https://www.youtube.com/watch?v=sTeyi3c3BLk&list=PLmrTMUhqzS3itcXhLWTm-NLdAArstfZ6Z)
 
 # Using
 
