@@ -58,3 +58,4 @@ $route['translate_uri_dashes'] = FALSE;
  * Define API Routes
  */
 $route['api/v1/simple'] = 'user_api/simple_api';
+$route['api/v1/limit'] = 'user_api/api_limit';
