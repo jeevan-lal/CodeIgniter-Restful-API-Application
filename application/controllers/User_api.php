@@ -96,4 +96,67 @@ class User_Api extends API_Controller
             $this->api_return(['statu' => false, 'error' => 'Invalid Data'], '404');
         }
     }
+
+    /**
+     * Login User with API
+     */
+    public function login()
+    {
+        header("Access-Control-Allow-Origin: *");
+
+        // API Configuration
+        $this->_apiConfig([
+            'methods' => ['POST'],
+        ]);
+
+        // you user authentication code will go here, you can compare the user with the database or whatever
+        $payload = [
+            'id' => "Your User's ID",
+            'other' => "Some other data"
+        ];
+
+        // Load Authorization Library or Load in autoload config file
+        $this->load->library('authorization_token');
+
+        // generte a token
+        $token = $this->authorization_token->generateToken($payload);
+
+        // return data
+        $this->api_return(
+            [
+                'status' => true,
+                "result" => [
+                    'token' => $token,
+                ],
+                
+            ],
+        200);
+    }
+
+    /**
+     * View User Data
+     *
+     * @method POST
+     * @return Response|void
+     */
+    public function view()
+    {
+        header("Access-Control-Allow-Origin: *");
+
+        // API Configuration [Return Array: User Token Data]
+        $user_data = $this->_apiConfig([
+            'methods' => ['POST'],
+            'requireAuthorization' => true,
+        ]);
+
+        // return data
+        $this->api_return(
+            [
+                'status' => true,
+                "result" => [
+                    'user_data' => $user_data['token_data']
+                ],
+            ],
+        200);
+    }
 }
