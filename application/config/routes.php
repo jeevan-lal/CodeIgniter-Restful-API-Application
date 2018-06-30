@@ -59,3 +59,5 @@ $route['translate_uri_dashes'] = FALSE;
  */
 $route['api/v1/simple'] = 'user_api/simple_api';
 $route['api/v1/limit'] = 'user_api/api_limit';
+
+$route['api/v1/key'] = 'user_api/api_key';

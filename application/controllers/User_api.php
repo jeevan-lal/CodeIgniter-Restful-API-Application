@@ -42,8 +42,58 @@ class User_Api extends API_Controller
         $this->_APIConfig([
             'methods' => ['POST'],
 
-            // number limit, type limit, time limit (last minute)
+            /**
+             * Number limit, type limit, time limit (last minute)
+             */
             'limit' => [15, 'ip', 'everyday'] 
         ]);
+    }
+
+    /**
+     * API Key without Database
+     */
+    public function api_key()
+    {
+        /**
+         * Use API Key without Database
+         * ---------------------------------------------------------
+         * @param: {string} Types
+         * @param: {string} API Key
+         */
+
+        $this->_APIConfig([
+            'methods' => ['POST'],
+            // 'key' => ['header', '123456'],
+
+            // API Key with Database
+            'key' => ['header'],
+
+            // Add Custom data in API Response
+            'data' => [
+                'is_login' => false,
+            ],
+        ]);
+
+        // Data
+        $data = array(
+            'status' => 'OK',
+            'data' => [
+                'user_id' => 12,
+            ]
+        );
+
+        /**
+         * Return API Response
+         * ---------------------------------------------------------
+         * @param: API Data
+         * @param: Request Status Code
+         */
+        if (!empty($data)) {
+
+            $this->api_return($data, '200');
+        } else {
+            
+            $this->api_return(['statu' => false, 'error' => 'Invalid Data'], '404');
+        }
     }
 }
